@@ -27,6 +27,7 @@ trigger ConTrigger on Contact (before insert, before update, after insert) {
             }
         }
     }
+    System.debug('Test Debug Statement.');
     
     List<pcs__Contact_Relationship__c> conRelRecs = new List<pcs__Contact_Relationship__c>();
     
