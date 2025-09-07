@@ -1,0 +1,68 @@
+<aura:component controller="UpdateUsingCheckboxC"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="ContactList" type="List" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadContacts}"/>
+    <aura:handler event="force:refreshView" action="{!c.loadContacts}" />
+    
+    <div class="slds-grid slds-grid--align-end"> 
+        <button class="slds-button slds-button--brand" onclick="{!c.updateFields}">Update</button>
+    </div>
+    
+    
+    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+            <tr class="slds-text-title--caps">
+                <th style="width:3.25rem;" class="slds-text-align--right">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <label class="slds-checkbox">
+                                <!--header checkbox for select all-->
+                                <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <span class="slds-truncate">FirstName</span>      
+                </th>
+                <th>
+                    <span class="slds-truncate">LastName</span>
+                </th>
+                <th>       
+                    <span class="slds-truncate">Phone</span>
+                </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <aura:iteration items="{!v.ContactList}" var="con">
+                <tr>
+                    <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckbox text="{!con.Id}" aura:id="boxPack" value=""/>
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label text"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                    <td scope="row">
+                        <div class="slds-truncate" title="{!con.FirstName}"><a>{!con.FirstName}</a></div>
+                    </td>
+                    <td scope="row">
+                        <div class="slds-truncate" title="{!con.LastName}">{!con.LastName}</div>
+                    </td>
+                    <td scope="row">
+                        <div class="slds-truncate" title="{!con.Phone}">{!con.Phone}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

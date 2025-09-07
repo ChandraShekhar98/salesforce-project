@@ -1,0 +1,16 @@
+<template>
+    <div id='test'>
+        <lightning-dual-listbox 
+            name="languages"
+            label="Select Languages"
+            source-label="Available"
+            selected-label="Selected"
+            field-level-help="This is a dual listbox"
+            options={options}
+            onchange={handleChange}>
+        </lightning-dual-listbox>
+    </div>
+    <div>
+        <lightning-button variant="base" label="labelName" title="Button here" onclick={handleClick}></lightning-button>
+    </div>
+</template>

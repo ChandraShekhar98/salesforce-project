@@ -1,0 +1,15 @@
+<apex:page lightningStylesheets="true" standardStylesheets="false">
+<style>
+#h1{
+font-size: 45px;
+color : red;
+font-family : Verdana,barrio;
+margin-left:300px;
+margin-top:95px;
+</style>
+
+  <div id="h1">
+  <body  width="50px" background-colour="Red"><br/>
+  Thank You
+  </body></div>
+</apex:page>

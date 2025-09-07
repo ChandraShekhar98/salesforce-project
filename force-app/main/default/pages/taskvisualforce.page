@@ -1,0 +1,32 @@
+<apex:page controller="DisplayRelatedContacts" id="pg">
+    <apex:form id="frm">
+        <apex:slds />
+        <apex:pageBlock title="List Of Accounts" id="pgblk" >
+            <apex:pageBlockTable value="{!accountsList}" var="ac">
+                <apex:column >
+                    <input type="radio" name="group1" value="{!ac.Name}"/>
+                    <apex:actionSupport event="onclick" action="{!displayContact}" ReRender="conpgblk" >
+                        <apex:param assignTo="{!accountId}" name="accname" value=" {!ac.Id}"/>
+                    </apex:actionSupport>
+                </apex:column>
+                <apex:column value="{!ac.Name}" />
+                <apex:column value="{!ac.AccountNumber}" />
+                <apex:column value="{!ac.Phone}"/>
+                <apex:column value="{!ac.Fax}"/>
+                <apex:column value="{!ac.Website}"/>
+                <apex:column value="{!ac.ParentId}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock id="conpgblk" >
+            <apex:outputPanel rendered="{!contactsList.size == 0}">
+                <b> NO RELATED CONTACTS FOR THIS ACCOUNT .</b>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!contactsList.size!= 0}">
+                <apex:pageBlockTable value="{!contactsList}" var="con">
+                    <apex:column value="{!con.Name}" />
+                    <apex:column value="{!con.MobilePhone}" />
+                </apex:pageBlockTable>
+            </apex:outputPanel> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

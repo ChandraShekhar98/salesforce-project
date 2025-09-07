@@ -1,0 +1,52 @@
+<apex:page standardController="Contact" extensions="RadioButtonController">
+    <apex:form >
+        <!-- Account page block -->
+        <apex:pageBlock title="List Of Accounts" >
+            <apex:pageblockSection rendered="{!If(accounts !=null && accounts.size>0,true,false)}">
+                <apex:pageBlockTable value="{!accounts}" var="acc"  width="100%" id="accTable">
+                    <apex:column headerValue="Select">
+                        <input type="radio" name="<strong>selectRadio</strong>" id= "radio" />
+                        <br/>
+                        	<apex:actionSupport event="onclick" action="{!getSelected}" status="buttonStatus"  reRender="cntblock">
+                          	  	<apex:param name="accid" value="{!acc.id}"/>
+                       	    </apex:actionSupport>
+                    </apex:column>
+                	<apex:column value="{!acc.Name}"/>
+                	<apex:column value="{!acc.AccountNumber}"/>
+                	<apex:column value="{!acc.Phone}"/>
+                    <apex:column value="{!acc.Fax}"/>
+               	    <apex:column value="{!acc.Website}"/>
+               	    <apex:column value="{!acc.ParentId}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+       
+        <!-- Action status block -->
+        <apex:actionStatus id="buttonStatus">
+            <apex:facet name="start">
+                <apex:outputPanel >
+                    <apex:commandButton value="View Contacts" disabled="true"/>
+                </apex:outputPanel>
+            </apex:facet>
+            <apex:facet name="stop">
+                <apex:outputPanel >
+                    <apex:commandButton value="View Contacts" action="{!viewContacts}" reRender="cntblock"/>
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:actionStatus>
+    </apex:pageBlock>
+    
+   
+    <!-- Contact Block -->
+    <apex:outputPanel id="cntblock">
+        <apex:pageBlock title="Contacts" rendered="{!If(contacts != null && contacts.size>0,true,false)}">
+            <apex:pageblockSection >
+                <apex:repeat value="{!contacts}" var="con" id="cntTable">
+                    <apex:outputText value="{!con.Name}"/>
+                    <apex:inputField value="{!con.MobilePhone}"/>
+                </apex:repeat>
+            </apex:pageblockSection>
+                <apex:commandButton action="{!save}" value="Save"/ >
+        </apex:pageBlock>
+    </apex:outputPanel>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<apex:page controller="PageBlockTable_cntrlr" >
+<apex:form >
+   <apex:pageBlock title="List OF Accounts">
+      <apex:pageBlockTable value="{!acclist}" var="x">
+          <apex:column value="{!x.Id}"/>
+          <apex:column value="{!x.Name}"/><tr>
+          <apex:pageBlockTable value="{!x.contacts}" var="y">
+             <apex:column value="{!y.firstname}"/>
+             <apex:column value="{!y.LastName}"/>
+          </apex:pageBlockTable> </tr>
+      </apex:pageBlockTable>
+   </apex:pageBlock>
+</apex:form>   
+</apex:page>

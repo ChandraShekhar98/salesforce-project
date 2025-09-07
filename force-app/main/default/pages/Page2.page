@@ -1,0 +1,12 @@
+<apex:page standardController="Account" recordSetVar="acc">
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!acc}" var="a">
+            <apex:column >
+                <input type="radio" />
+                
+            </apex:column>
+            <apex:column value="{!a.Name}"/>
+            <apex:column value="{!a.AccountNumber}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

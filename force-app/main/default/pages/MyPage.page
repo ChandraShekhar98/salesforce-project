@@ -1,0 +1,44 @@
+<apex:page Controller="MyController" showHeader="false">
+    <apex:form >       
+        <apex:inputText value="{!searchKey}" label="Input"/>
+        <apex:commandButton value="Search records" action="{!search}" reRender="abc"/>
+        <apex:commandButton value="Clear records" action="{!clear}"/>
+        <apex:pageBlock title="Search Result" id="ViewPage">
+            <apex:pageBlockSection >
+                <apex:pageBlockTable value="{!accList}" var="a" id="abc">
+                    <apex:column >
+                        <input type="button" name="editButton" value="Edit" />
+                        <apex:actionSupport event="onclick" action="{!updateAccount}" reRender="out" >
+                            <apex:param assignTo="{!accountId}" name="accId" value="{!a.Id}" />
+                        </apex:actionSupport>
+                    </apex:column>
+                    <apex:column >
+                        <input type="button" name="deleteButton" value="Delete" />
+                        <apex:actionSupport event="onclick" action="{!deleteAccount}" reRender="ViewPage" >
+                            <apex:param assignTo="{!accountId}" name="accId" value="{!a.Id}" />
+                        </apex:actionSupport>
+                    </apex:column>
+                    <apex:column value="{!a.id}"/>
+                    <apex:column value="{!a.name}"/>
+                    <apex:column value="{!a.phone}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:outputPanel id="out">
+            <apex:pageBlock id="editpageblock" title="Update Account" rendered="{!if(editAccount!=null,true,false)}">
+                <apex:pageBlockSection >
+                    
+                    <apex:repeat value="{!editAccount}" var="edit">
+                        
+                        <apex:inputField value="{!edit.name}"/>
+                        <apex:inputField value="{!edit.phone}"/>
+                        
+                    </apex:repeat>
+                    <apex:commandButton value="update" action="{!updateRecord}" reRender="abc" />
+                </apex:pageBlockSection>
+                
+                
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,15 @@
+<apex:page controller="TestClass">
+    <div>
+         <table>
+             <tr>
+                 <td>
+                     <apex:outputLabel value="Status" style="color:blue;"></apex:outputLabel>
+                 </td>
+                 <td>
+                     <apex:outputText value="{!name}"></apex:outputText>
+                 </td>
+             </tr>
+        </table>
+    </div>
+    
+</apex:page>

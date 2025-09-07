@@ -1,0 +1,54 @@
+<apex:page standardController="Account" recordSetVar="accounts">
+	<apex:form >
+    <apex:pageBlock title="List Of Accounts">
+        <apex:pageBlockTable value="{!accounts}" var="a" id="acc">
+            <apex:column > 
+                <input type="radio" name="group1" />
+            </apex:column>
+            <apex:column value="{!a.Name}"/>
+            <apex:column value="{!a.AccountNumber}"/>
+            <apex:column value="{!a.Phone}"/>
+            <apex:column value="{!a.Fax}"/>
+			<apex:column value="{!a.Website}"/>  
+            <apex:column value="{!a.ParentId}"/>
+        </apex:pageBlockTable>
+             <table style="width: 100%">
+                <tr>
+                	<td align="center">
+                    	<!-- First page -->
+                    	<apex:commandButton value="First page " action="{!First}"/>                   
+                    		 <!-- Previous page -->
+                     	  	 <!-- active -->
+                  	  	<apex:commandButton action="{! Previous }" value="« Previous" rendered="{! HasPrevious }"/>
+                  	  		<!-- inactive (no earlier pages) -->
+                    	<apex:outputText style="color: #ccc;" value="« Previous" rendered="{! NOT(HasPrevious) }"/>
+                    	&nbsp;&nbsp;
+                    	<!-- Next page -->
+                    	<!-- active -->
+                    	<apex:commandButton action="{! Next }" value="Next »" rendered="{! HasNext }"/>
+                    	<!-- inactive (no more pages) -->
+                    	<apex:outputText style="color: #ccc;" value="Next »" rendered="{! NOT(HasNext) }"/>
+                   
+                    	<!-- Last Page -->
+                    	<apex:commandButton value=" Last page" action="{!Last}"/>
+                  </td>
+                  <td align="right">
+                   		 Records per page:
+                   		 <apex:selectList value="{! PageSize }" size="1">
+                         <apex:selectOption itemValue="5" itemLabel="5"/>
+                     	 <apex:selectOption itemValue="10" itemLabel="10"/>
+                       	 <apex:selectOption itemValue="15" itemLabel="15"/>
+                       	 <apex:selectOption itemValue="20" itemLabel="20"/>
+                       	 <apex:actionSupport event="onchange" reRender="acc"/>
+                    	</apex:selectList>
+                  </td>
+              </tr>
+            </table>
+    </apex:pageBlock>
+  		 	 	<apex:pageBlock title="Contact Details" id="contpageblk">   
+               	    <apex:pageBlockTable value="{!account.contacts}" var="contact">
+                        <apex:column value="{!contact.firstname}"/>
+                    </apex:pageBlockTable>                     
+   		 	    </apex:pageBlock>
+        </apex:form>
+</apex:page>

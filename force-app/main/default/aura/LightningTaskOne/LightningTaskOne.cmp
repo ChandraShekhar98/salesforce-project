@@ -1,0 +1,67 @@
+<aura:component controller="ContactController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}"/> 
+    <aura:attribute name="contacts" type="List"/>
+    <aura:attribute name="recordError" type="String" access="private"/>
+    <aura:attribute name="createContact" type="Contact" default="{
+                                                                 'sObjectType':'Contact',
+                                                                 'AccountId':'',
+                                                                 'FirtName':'',
+                                                                 'LastName':'',
+                                                                 'Email':'',
+                                                                 'Phone':''
+                                                                 }"/>
+    <lightning:card title="Contacts">
+        <aura:set attribute="actions">
+            <lightning:button label="New" onclick="{!c.newContact}" />
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <div aura:id="recordViewForm" > 
+                <aura:iteration items="{!v.contacts}" var="contact">
+                    <force:recordData aura:id="recordHandler"
+                                      recordId="{!contact.Id}"
+                                      fields="Id"
+                                      targetError="{!v.recordError}"
+                                      recordUpdated="{!c.handleRecordUpdated}" />
+                    <lightning:button name="{!contact.Id}" label="Edit" onclick="{!c.editContact}"/>
+                    <lightning:button name="{!contact.Id}" label="Delete" variant="destructive" onclick="{!c.deleteRecord}"/>
+                        <lightning:recordViewForm recordID="{!contact.Id}" objectApiName="Contact" >
+                        <div class="slds-box slds-theme_default">            
+                            <br /> 
+                            <table>
+                                <tr>
+                                    <td>
+                                        Name:
+                                    </td>
+                                    <td>
+                                        <lightning:button name="{!contact.Id}" label="{!contact.Name}" variant="base" onclick="{!c.doRedirect}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email:
+                                    </td>
+                                    <td>
+                                        {!contact.Email}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone : 
+                                    </td>
+                                    <td>
+                                        {!contact.Phone}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </lightning:recordViewForm>
+                    <br/>
+                </aura:iteration>
+            </div>
+        </p>
+    </lightning:card>
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+</aura:component>

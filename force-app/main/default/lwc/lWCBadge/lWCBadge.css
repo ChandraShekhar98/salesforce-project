@@ -1,0 +1,13 @@
+.custom-badge {
+    display: inline-block;
+    background-color: #ff5733; /* Background color */
+    color: #ffffff; /* Text color */
+    font-size: 0.875rem; /* Font size */
+    font-weight: 600; /* Font weight */
+    padding: 0.25rem 0.75rem; /* Padding for the badge */
+    border-radius: 0.625rem; /* Rounded corners */
+    line-height: 1; /* Line height */
+    white-space: nowrap; /* Prevent text wrapping */
+    text-align: center; /* Center the text */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); */
+}

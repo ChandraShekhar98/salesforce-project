@@ -1,0 +1,102 @@
+<template>
+    <lightning-card style="background-color: white;">
+        <!-- <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-8">
+                <div class="slds-grid slds-grid_vertical" style="height:450px">
+                    <br><br><br><br>
+                    <div class="slds-col">
+                        <span class="slds-float_right">
+                            Sent &nbsp;
+                            <lightning-helptext content="Sent items"></lightning-helptext>
+                        </span>
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-float_right">
+                            Clicked &nbsp;
+                            <lightning-helptext content="Sent items"></lightning-helptext>
+                        </span>
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-float_right">
+                            Opened &nbsp;
+                            <lightning-helptext content="Sent items"></lightning-helptext>
+                        </span>
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-float_right">
+                            Unsubscribed &nbsp;
+                            <lightning-helptext content="Sent items"></lightning-helptext>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_7-of-8">
+              <span>
+                <div class="slds-p-around_small slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                    <canvas class="barChart" lwc:dom="manual"></canvas>
+                    <div if:false={isChartJsInitialized} class="slds-col--padded slds-size--1-of-1">
+                        <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+                    </div>
+                </div>
+              </span>
+            </div>
+          </div> -->
+        <div style="text-align: center; color: rgb(62, 62, 184); font-size:medium; font-weight: bold">
+            Campaign email send stats
+        </div>
+        <div class="container">
+            <div class="left-div">
+                <br>
+                <span style="color: rgb(62, 62, 184); font-size:small; text-decoration: underline; font-weight: bold">
+                    Sent
+                </span>
+                <lightning-helptext content="Sent items"></lightning-helptext>
+                <br>
+                <br>
+                <br>
+                <span style="color: rgb(62, 62, 184); font-size:small; text-decoration: underline; font-weight: bold">
+                    Opened
+                </span>
+                <lightning-helptext content="Opened items"></lightning-helptext>
+                <br>
+                <br>
+                <br>
+                <span style="color: rgb(62, 62, 184); font-size:small; text-decoration: underline; font-weight: bold">
+                    Clicked
+                </span>
+                <lightning-helptext content="Clicked items"></lightning-helptext>
+                <br>
+                <br>
+                <br>
+                <span style="color: rgb(47, 47, 161); font-size:small; text-decoration: underline; font-weight: bold">
+                    Unsubscribed
+                </span>
+                <lightning-helptext content="Unsubscribe items"></lightning-helptext>
+            </div>
+            <div class="right-div">
+                <div class="chart-container" style="height: 250px;">
+                    <canvas class="barChart" lwc:dom="manual"></canvas>
+                    <div if:false={isChartJsInitialized} class="slds-col--padded slds-size--1-of-1">
+                        <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <lightning-layout horizontal-align="spread">
+            <lightning-layout-item>
+                Sent
+                Clicked
+                Opened
+                Unsubscribed
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <div class="slds-p-around_small slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                    <canvas class="barChart" lwc:dom="manual"></canvas>
+                    <div if:false={isChartJsInitialized} class="slds-col--padded slds-size--1-of-1">
+                        <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+                    </div>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout> -->
+    </lightning-card>
+</template>
