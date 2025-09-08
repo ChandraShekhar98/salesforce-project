@@ -1,7 +1,5 @@
 trigger ConTrigger on Contact (before insert, before update, after insert) {
     
-    
-    //disabling as have other logic
     if(false){
         List<String> accList = new List<String>();
         
@@ -37,8 +35,6 @@ trigger ConTrigger on Contact (before insert, before update, after insert) {
             rec.Name = 'Test'+con.LastName;
             conRelRecs.add(rec);
         }
-        System.debug('list here '+conRelRecs);
         insert conRelRecs;
     }
-
 }
