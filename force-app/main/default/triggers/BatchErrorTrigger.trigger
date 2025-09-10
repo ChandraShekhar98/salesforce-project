@@ -8,4 +8,5 @@ trigger BatchErrorTrigger on BatchApexErrorEvent (after insert) {
         errorLogs.add(logRec);
         insert errorLogs;
     }
+    System.debug('error logs '+errorLogs);
 }
